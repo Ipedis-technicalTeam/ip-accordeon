@@ -1,0 +1,14 @@
+.ip-accordeon .ip-accordeon-panel {
+  visibility: visible;
+  opacity: 1;
+  max-height: 1000px;
+  transition: all 0.3s ease-in;
+
+}
+
+.ip-accordeon .js-acc-panel-hide {
+  transition: all 0.3s ease-in;
+  opacity: 0;
+  max-height: 0;
+  visibility: hidden;
+}

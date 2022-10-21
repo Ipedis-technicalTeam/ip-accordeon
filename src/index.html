@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <title>Stencil Component Starter</title>
+
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <script type="module" src="/build/ip-accordeon.esm.js"></script>
+    <script nomodule src="/build/ip-accordeon.js"></script>
+  </head>
+  <body>
+    <ip-accordeon>
+
+        <div class="ip-accordeon" slot="accordeon-1">
+
+          <h3 class="js-acc-button">
+            <button type="button" aria-expanded="true" class="accordion-trigger" aria-controls="sect1" id="accordion1id">
+              <span class="accordion-title">
+                Front-end Dev
+              </span>
+              <span>^</span>
+            </button>
+          </h3>
+          <div id="sect1" role="region" aria-labelledby="accordion1id" class="ip-accordeon-panel js-acc-panel">
+            <!-- Dynamic content for the tab panel-->
+            <div>
+              <h3>Front-end dev</h3>
+              <p>This is some front-end dev</p>
+              <p>This is some front-end dev</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ip-accordeon" slot="accordeon-2">
+
+          <h3 class="js-acc-button">
+            <button type="button" aria-expanded="false" class="accordion-trigger" aria-controls="sect1" id="accordion2id">
+              <span class="accordion-title">
+                Back-end Dev
+              </span>
+                <span>^</span>
+            </button>
+          </h3>
+          <div id="sect2" role="region" aria-labelledby="accordion2id" class="ip-accordeon-panel js-acc-panel js-acc-panel-hide">
+
+            <!-- Dynamic content for the tab panel-->
+            <div>
+              <h3>Back-end Dev</h3>
+              <p>This is some back-end dev</p>
+              <p>This is some back-end dev</p>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ip-accordeon" slot="accordeon-3">
+
+          <h3 class="js-acc-button">
+            <button type="button" aria-expanded="false" class="accordion-trigger" aria-controls="sect1" id="accordion3id">
+              <span class="accordion-title">
+                Graphic Designer
+              </span>
+              <span>^</span>
+            </button>
+          </h3>
+          <div id="sect3" role="region" aria-labelledby="accordion3id" class="ip-accordeon-panel js-acc-panel js-acc-panel-hide">
+
+            <!-- Dynamic content for the tab panel-->
+            <div>
+              <h3>Graphic Designer</h3>
+              <p>This is some graphic designer work</p>
+              <p>This is some graphic designer work</p>
+            </div>
+          </div>
+
+        </div>
+
+    </ip-accordeon>
+  </body>
+</html>
