@@ -1,9 +1,58 @@
+button,
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+.js-acc-button {
+  background-color: #b00057;
+  color: #ffffff;
+  padding-inline: 2em;
+  padding-block: 1em;
+  margin: 0;
+}
+
+.js-acc-button button {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  position: relative;
+}
+
+.js-acc-button button::before {
+  content: '';
+  position: absolute;
+  inset-block: auto;
+  inset-inline-end: 0;
+  margin: auto;
+  border: 0.5em solid transparent;
+  border-top-color: currentColor;
+  border-bottom: 0;
+  transform: translateY(50%);
+  pointer-events: none;
+  transition: transform 0.5s linear;
+}
+
+.js-acc-button button[aria-expanded='true']::before {
+  transform: rotate(-180deg) translateY(-50%);
+}
+
+.ip-accordeon {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+  margin-block-end: 20px;
+}
+
+.ip-accordeon:last-child {
+  margin-block-end: 0;
+}
+
 .ip-accordeon .ip-accordeon-panel {
   visibility: visible;
   opacity: 1;
   max-height: 1000px;
   transition: all 0.3s ease-in;
-
 }
 
 .ip-accordeon .js-acc-panel-hide {
