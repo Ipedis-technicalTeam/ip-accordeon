@@ -1,5 +1,5 @@
 import { Config } from '@stencil/core';
-import {sass} from "@stencil/sass";
+import { sass } from '@stencil/sass';
 
 export const config: Config = {
   namespace: 'ip-accordeon',
@@ -19,7 +19,5 @@ export const config: Config = {
       serviceWorker: null, // disable service workers
     },
   ],
-  plugins: [
-    sass()
-  ]
+  plugins: [sass()],
 };

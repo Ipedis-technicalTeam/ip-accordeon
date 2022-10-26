@@ -2,53 +2,165 @@
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
     <title>Stencil Component Starter</title>
 
+    <link rel="stylesheet" href="assets/fonts/fonts.css" />
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <script type="module" src="/build/ip-accordeon.esm.js"></script>
     <script nomodule src="/build/ip-accordeon.js"></script>
   </head>
+
+  <style>
+    body {
+      background-color: #444;
+    }
+
+    h3,
+    p:last-child {
+      margin: 0;
+    }
+
+    ip-accordeon {
+      display: block;
+      max-width: 895px;
+      margin-inline: auto;
+    }
+
+    ip-accordeon::part(acc-title) {
+      position: relative;
+    }
+
+    ip-accordeon::part(acc-title)::before {
+      content: '';
+      position: relative;
+      margin-inline-end: 5px;
+    }
+
+    .acc-content {
+      display: flex;
+      gap: 45px;
+      padding: 45px;
+    }
+
+    .acc-content > * {
+      flex-basis: 50%;
+      align-self: center;
+    }
+
+    .acc-content__image {
+      border-radius: 10px;
+      inline-size: auto;
+      block-size: 100%;
+      max-inline-size: 50%;
+      max-block-size: 100%;
+    }
+
+    .acc-content__title {
+      color: var(--ip-acc-primary-color);
+      font-size: 18px;
+      line-height: 25px;
+      font-weight: 700;
+      margin-block-end: 0.63em;
+    }
+
+    .acc-content__title:last-child {
+      margin-block-end: 0;
+    }
+
+    .acc-content__desc {
+      font-size: 18px;
+      font-weight: 300;
+      color: #2e3243;
+      margin-block-end: 2em;
+    }
+
+    .acc-content__desc:last-child {
+      margin-block-end: 0;
+    }
+
+    .acc-content__btn {
+      all: unset;
+      color: var(--ip-acc-primary-color);
+      padding-inline: 25px;
+      padding-block: 10px;
+      background-color: transparent;
+      border: 1px solid currentColor;
+      border-radius: 4px;
+      box-sizing: border-box;
+      cursor: pointer;
+    }
+  </style>
+
   <body>
+    <ip-accordeon
+      accordeon-headers='[
+        {"title":"Non consectetur a erat nam at lectus urna duis?"},
+        {"title":"Onec urna tellus, facilisis id sagittis eu, rutrum sit amet elit ?"},
+        {"title":"Uisque vestibulum ultrices metus quis lacinia. Vivamus hendrerit tortor ?"}
+      ]'
+    >
+      <!-- <div slot="accordeon-1">
+        <img width="513" height="513" src="assets/images/tab-img-1.png" alt="" />
+        <div class="desc">
+          <h4>Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum
+            nunc, eu gravida risus. Sed a consequat velit. Sed non elit tortor. Nulla vestibulum,
+            libero sed fringilla tempus, augue erat dictum quam, vehicula consectetur leo massa ac
+            leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+          </p>
+        </div>
+      </div> -->
 
-    <ip-accordeon accordeon-headers='[
-        {"title":"Front-end"},
-        {"title":"Back-end"},
-        {"title":"Designers"}
-      ]'>
+      <div class="acc-content" slot="accordeon-1">
+        <img class="acc-content__image" src="assets/images/tab-img-1.png" alt="" />
 
-      <div slot="accordeon-1">
-          <!-- Dynamic content for the tab panel-->
-          <h3>Front-end dev</h3>
-          <p>This is some front-end dev</p>
-          <p>This is some front-end dev</p>
+        <div class="acc-content__desc-wrapper">
+          <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <p class="acc-content__desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum
+            nunc, eu gravida risus. Sed a consequat velit. Sed non elit tortor. Nulla vestibulum,
+            libero sed fringilla tempus, augue erat dictum quam, vehicula consectetur leo massa ac
+            leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+          </p>
+          <a class="acc-content__btn" href="#"> En savoir plus </a>
+        </div>
       </div>
 
-      <div slot="accordeon-2">
-          <!-- Dynamic content for the tab panel-->
-          <h3>Back-end Dev</h3>
-          <p>This is some back-end dev</p>
-          <p>This is some back-end dev</p>
-          <h3>Back-end Dev</h3>
-          <p>This is some back-end dev</p>
-          <p>This is some back-end dev</p>
+      <div class="acc-content" slot="accordeon-2">
+        <img class="acc-content__image" src="assets/images/tab-img-2.png" alt="" />
+
+        <div class="acc-content__desc-wrapper">
+          <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <p class="acc-content__desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum
+            nunc, eu gravida risus. Sed a consequat velit. Sed non elit tortor. Nulla vestibulum,
+            libero sed fringilla tempus, augue erat dictum quam, vehicula consectetur leo massa ac
+            leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+          </p>
+          <a class="acc-content__btn" href="#"> En savoir plus </a>
+        </div>
       </div>
 
-      <div slot="accordeon-3">
-          <!-- Dynamic content for the tab panel-->
-            <h3>Graphic Designer</h3>
-            <p>This is some graphic designer work</p>
-            <p>This is some graphic designer work</p>
-            <h3>Graphic Designer</h3>
-            <p>This is some graphic designer work</p>
-            <p>This is some graphic designer work</p>
-            <h3>Graphic Designer</h3>
-            <p>This is some graphic designer work</p>
-            <p>This is some graphic designer work</p>
-      </div>
+      <div class="acc-content" slot="accordeon-3">
+        <img class="acc-content__image" src="assets/images/tab-img-3.png" alt="" />
 
+        <div class="acc-content__desc-wrapper">
+          <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <p class="acc-content__desc">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum
+            nunc, eu gravida risus. Sed a consequat velit. Sed non elit tortor. Nulla vestibulum,
+            libero sed fringilla tempus, augue erat dictum quam, vehicula consectetur leo massa ac
+            leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+          </p>
+          <a class="acc-content__btn" href="#"> En savoir plus </a>
+        </div>
+      </div>
     </ip-accordeon>
-
   </body>
 </html>

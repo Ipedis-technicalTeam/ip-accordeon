@@ -5,8 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { AccordeonHeadersInterface } from "./components/ip-accordeon/interface/accordeon-headers.interface";
 export namespace Components {
     interface IpAccordeon {
+        "accordeonHeaders": AccordeonHeadersInterface[] | string;
     }
 }
 declare global {
@@ -22,6 +24,7 @@ declare global {
 }
 declare namespace LocalJSX {
     interface IpAccordeon {
+        "accordeonHeaders"?: AccordeonHeadersInterface[] | string;
     }
     interface IntrinsicElements {
         "ip-accordeon": IpAccordeon;

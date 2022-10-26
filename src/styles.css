@@ -1,0 +1,124 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: 1rem;
+}
+
+button,
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+h3 {
+  margin-block: 0;
+  margin-inline: 0;
+  font-weight: 500;
+}
+
+p:last-child {
+  margin-block-end: 0;
+}
+
+ip-accordeon {
+  counter-reset: list;
+}
+
+ip-accordeon > * {
+  counter-increment: list;
+}
+
+.js-acc-button button {
+  position: relative;
+  display: block;
+  font-size: 1.125rem;
+  color: #b00057;
+  background-color: #ffffff;
+  margin: 0;
+  inline-size: 100%;
+  block-size: 100%;
+  padding-inline: 1.333em;
+  padding-block: 1em;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+.js-acc-button button::before {
+  content: '';
+  position: absolute;
+  inset-block: 50%;
+  inset-inline-end: 0;
+  margin: auto;
+  border: 0.5em solid transparent;
+  border-top-color: currentColor;
+  border-bottom: 0;
+  transform: translateX(-1em);
+  transform-origin: center;
+  pointer-events: none;
+  transition: transform 0.5s linear;
+}
+
+.js-acc-button button .accordion-title {
+  position: relative;
+  font-size: inherit;
+  color: #2e3243;
+}
+
+.js-acc-button button .accordion-title::before {
+  content: '0' counter(list) '.';
+  position: relative;
+  color: #b00057;
+  margin-inline-end: 0.625em;
+}
+
+.js-acc-button button[aria-expanded='true'] {
+  background-color: #b00057;
+  color: #ffffff;
+}
+
+.js-acc-button button[aria-expanded='true']::before {
+  transform: rotate(180deg) translateX(1em);
+}
+
+.js-acc-button button[aria-expanded='true'] .accordion-title {
+  color: currentColor;
+}
+
+.js-acc-button button[aria-expanded='true'] .accordion-title::before {
+  color: currentColor;
+}
+
+.ip-accordeon {
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+  margin-block-end: 20px;
+  block-size: fit-content;
+}
+
+.ip-accordeon:last-child {
+  margin-block-end: 0;
+}
+
+.ip-accordeon .js-acc-panel {
+  visibility: visible;
+  opacity: 1;
+  /* height: auto; */
+  max-height: 1000px;
+  padding: 45px;
+  transform: scaleY(1);
+  transform-origin: top;
+  margin: 0;
+  transition: transform 0.3s ease-in-out, max-height 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.ip-accordeon .js-acc-panel-hide {
+  transition: transform 0.3s ease-in-out;
+  opacity: 0;
+  transform: scaleY(0);
+  padding: 0;
+  max-height: 0;
+  visibility: hidden;
+  overflow: hidden;
+}
