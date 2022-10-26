@@ -48,13 +48,14 @@ export class IpAccordeon {
 
   onSelectPanel(index: number) {
 
-    const selectedButton = this.accHeaderButtons[index - 1];
-    const selectedPanel = this.accPanels[index - 1];
+    // to do - seperate code in dedicated function
+    const selectedButton = this.accHeaderButtons[index];
+    const selectedPanel = this.accPanels[index];
 
-    if (selectedPanel.classList.contains('js-panel-hide')) {
-      selectedPanel.classList.remove('js-panel-hide');
+    if (selectedPanel.offsetHeight === 0) {
+      selectedPanel.style.height =  selectedPanel.scrollHeight + 'px';
     } else {
-      selectedPanel.classList.add('js-panel-hide');
+      selectedPanel.style.height =  '0px';
     }
 
     if (selectedButton.getAttributeNode('aria-expanded').value === 'true') {
@@ -62,6 +63,7 @@ export class IpAccordeon {
     } else {
       selectedButton.setAttribute('aria-expanded', 'true');
     }
+
   }
 
   render() {
@@ -71,9 +73,8 @@ export class IpAccordeon {
         {this._accordeonHeaders.map((tabHeader, index) => (
             [
               <h3 class="js-acc-button">
-
                 <button
-                  onClick={this.onSelectPanel.bind(this,  (index + 1))}
+                  onClick={this.onSelectPanel.bind(this,  (index))}
                   aria-expanded="false"
                   aria-controls={`sect-${index + 1}`}
                   id={`accordeon-${index + 1}`}>
@@ -82,12 +83,10 @@ export class IpAccordeon {
                   </span>
                   <span>^</span>
                 </button>
-
               </h3>,
-              <div id={`sect-${index + 1}`} role="region" aria-labelledby={`accordeon-${index + 1}`} class='js-panel js-panel-hide'>
+              <div id={`sect-${index + 1}`} role="region" aria-labelledby={`accordeon-${index + 1}`} class='js-panel'>
                 <slot name={'accordeon-' + (index + 1)}></slot>
               </div>
-
             ]
           ))
         }

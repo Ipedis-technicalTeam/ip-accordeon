@@ -8,11 +8,5 @@
   overflow: hidden;
   opacity: 1;
   transition: all 0.3s ease-in;
-}
-
-.js-panel-hide {
-  transition: all 0.3s ease-in;
-  opacity: 0;
-  max-height: 0;
-  visibility: hidden;
+  height: 0;
 }
