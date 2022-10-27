@@ -57,8 +57,6 @@ export class IpAccordeon {
   }
 
   setExpanded(button: HTMLElement) {
-    console.log(button);
-
     if (button.getAttributeNode('aria-expanded').value === 'true') {
       button.setAttribute('aria-expanded', 'false');
     } else {
@@ -134,14 +132,12 @@ export class IpAccordeon {
           <div class="ip-acc-panel">
             <h3 class="js-acc-button">
               <button
-                onClick={this.onSelectPanel.bind(this)}
+                onClick={this.onSelectPanel.bind(this, 0)}
                 aria-expanded="false"
                 aria-controls="sect-1"
                 id="accordeon-1"
               >
-                <span class="accordion-title">
-                  01. Non consectetur a erat nam at lectus urna duis?
-                </span>
+                <span class="accordion-title">Non consectetur a erat nam at lectus urna duis?</span>
               </button>
             </h3>
             <div id="sect-1" role="region" aria-labelledby="accordeon-1" class="js-panel">
