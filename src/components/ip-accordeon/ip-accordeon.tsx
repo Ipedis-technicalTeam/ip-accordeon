@@ -25,53 +25,79 @@ export class IpAccordeon {
   @State() accHeaderButtons;
   @State() accPanels;
 
+  @Prop() isFirstPanelOpen: boolean;
+  @Prop() isSingleOpen: boolean;
+
   componentWillLoad() {
     this.arrayDataWatcher(this.accordeonHeaders);
+
+    setTimeout(() => {
+      this.accHeaderButtons = this.el.shadowRoot.querySelector('#ip-accordeon').querySelectorAll('button');
+      this.accPanels = this.el.shadowRoot.querySelector('#ip-accordeon').querySelectorAll('.js-panel');
+
+      this.setSlotId();
+
+      this.openFirstPanel();
+
+    }, 0)
   }
 
-  componentDidLoad() {
-    this.accHeaderButtons = this.el.shadowRoot
-      .querySelector('#ip-accordeon')
-      .querySelectorAll('button');
-    this.accPanels = this.el.shadowRoot
-      .querySelector('#ip-accordeon')
-      .querySelectorAll('.js-panel');
+  // keep first panel open or not depending on prop 'isFirstPanelOpen'
+  openFirstPanel() {
+    if (this.isFirstPanelOpen) {
+      (this.accHeaderButtons[0] as HTMLElement).setAttribute('aria-expanded', 'true');
+      const firstPanel = this.accPanels[0];
+      firstPanel.style.transition = 'none';
+      firstPanel.style.height = firstPanel.scrollHeight + 'px';
+      setTimeout(() => {
+        firstPanel.style.transition = 'all 0.3s ease-in';
+      }, 500)
+    }
+  }
 
-    // By default set first item to open
-    (this.accHeaderButtons[0] as HTMLElement).setAttribute('aria-expanded', 'false');
-    (this.accPanels[0] as HTMLElement).classList.remove('js-panel-hide');
-
-    // For accessibility - set an id on the slotted elements
+  // For accessibility - set an id on the slotted elements
+  setSlotId() {
     const slottedElems = this.el.querySelectorAll('[slot]');
     slottedElems.forEach((slotElem, index) => {
       slotElem.setAttribute('id', 'sect-' + (index + 1));
     });
   }
 
-  setHeight(panel: HTMLElement) {
-    if (panel.offsetHeight === 0) {
-      panel.style.height = panel.scrollHeight + 'px';
-    } else {
-      panel.style.height = '0px';
-    }
-  }
-
-  setExpanded(button: HTMLElement) {
-    if (button.getAttributeNode('aria-expanded').value === 'true') {
-      button.setAttribute('aria-expanded', 'false');
-    } else {
-      button.setAttribute('aria-expanded', 'true');
-    }
-  }
-
   onSelectPanel(index: number) {
-    // to do - seperate code in dedicated function
     const selectedButton = this.accHeaderButtons[index];
     const selectedPanel = this.accPanels[index];
 
+    if (this.isSingleOpen) {
+      this.accPanels.forEach((panel) => {
+        panel.style.height =  '0px';
+      });
+
+      this.accHeaderButtons.forEach((accButton) => {
+        accButton.setAttribute('aria-expanded', 'false');
+      })
+
+    }
+
     this.setHeight(selectedPanel);
 
-    this.setExpanded(selectedButton);
+    this.setAriaExpanded(selectedButton);
+  }
+
+  setHeight(selectedPanel: HTMLElement) {
+    if (selectedPanel.offsetHeight === 0) {
+      selectedPanel.style.height = selectedPanel.scrollHeight + 'px';
+    } else {
+      selectedPanel.style.height = '0px';
+    }
+  }
+
+  // set aria-expanded to true for selected button
+  setAriaExpanded(selectedButton: HTMLElement) {
+    if (selectedButton.getAttributeNode('aria-expanded').value === 'true') {
+      selectedButton.setAttribute('aria-expanded', 'false');
+    } else {
+      selectedButton.setAttribute('aria-expanded', 'true');
+    }
   }
 
   render() {
