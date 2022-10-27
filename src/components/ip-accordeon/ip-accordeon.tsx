@@ -33,31 +33,35 @@ export class IpAccordeon {
 
     setTimeout(() => {
       this.accHeaderButtons = this.el.shadowRoot.querySelector('#ip-accordeon').querySelectorAll('button');
+
       this.accPanels = this.el.shadowRoot.querySelector('#ip-accordeon').querySelectorAll('.js-panel');
 
       this.setSlotId();
 
       this.openFirstPanel();
-
-    }, 0)
+    }, 0);
   }
 
   // keep first panel open or not depending on prop 'isFirstPanelOpen'
   openFirstPanel() {
     if (this.isFirstPanelOpen) {
-      (this.accHeaderButtons[0] as HTMLElement).setAttribute('aria-expanded', 'true');
       const firstPanel = this.accPanels[0];
+
+      (this.accHeaderButtons[0] as HTMLElement).setAttribute('aria-expanded', 'true');
+
       firstPanel.style.transition = 'none';
       firstPanel.style.height = firstPanel.scrollHeight + 'px';
+
       setTimeout(() => {
         firstPanel.style.transition = 'all 0.3s ease-in';
-      }, 500)
+      }, 500);
     }
   }
 
   // For accessibility - set an id on the slotted elements
   setSlotId() {
     const slottedElems = this.el.querySelectorAll('[slot]');
+
     slottedElems.forEach((slotElem, index) => {
       slotElem.setAttribute('id', 'sect-' + (index + 1));
     });
@@ -67,20 +71,27 @@ export class IpAccordeon {
     const selectedButton = this.accHeaderButtons[index];
     const selectedPanel = this.accPanels[index];
 
-    if (this.isSingleOpen) {
-      this.accPanels.forEach((panel) => {
-        panel.style.height =  '0px';
-      });
+    this.setAriaExpanded(selectedButton);
 
-      this.accHeaderButtons.forEach((accButton) => {
-        accButton.setAttribute('aria-expanded', 'false');
-      })
-
-    }
+    this.isOpen(selectedButton);
 
     this.setHeight(selectedPanel);
+  }
 
-    this.setAriaExpanded(selectedButton);
+  isOpen(selectedButton: HTMLElement) {
+    if (this.isSingleOpen) {
+      this.accPanels.forEach(panel => {
+        panel.style.height = '0px';
+      });
+
+      this.accHeaderButtons.forEach(accButton => {
+        if (selectedButton === accButton && selectedButton.getAttributeNode('aria-expanded').value === 'true') {
+          selectedButton.setAttribute('aria-expanded', 'true');
+        } else {
+          accButton.setAttribute('aria-expanded', 'false');
+        }
+      });
+    }
   }
 
   setHeight(selectedPanel: HTMLElement) {
@@ -101,90 +112,73 @@ export class IpAccordeon {
   }
 
   render() {
-    // const accPanel = (
-    //   <div>
-    //     {this._accordeonHeaders.map((tabHeader, index) => [
-    //       <h3 class="js-acc-button">
-    //         <button
-    //           onClick={this.onSelectPanel.bind(this, index)}
-    //           aria-expanded="false"
-    //           aria-controls={`sect-${index + 1}`}
-    //           id={`accordeon-${index + 1}`}
-    //         >
-    //           <span class="accordion-title">{tabHeader.title}</span>
-    //         </button>
-    //       </h3>,
-    //       <div
-    //         id={`sect-${index + 1}`}
-    //         role="region"
-    //         aria-labelledby={`accordeon-${index + 1}`}
-    //         class="js-panel"
-    //       >
-    //         <slot name={'accordeon-' + (index + 1)}></slot>
-    //       </div>,
-    //     ])}
-    //   </div>
-    // );
-
     return [
       <div class="ip-accordeon" id="ip-accordeon">
         {this._accordeonHeaders ? (
           this._accordeonHeaders.map((tabHeader, index) => (
-            <div class="ip-acc-panel">
-              <h3 part="acc-header" class="js-acc-button">
-                <button
-                  part="acc-btn"
-                  onClick={this.onSelectPanel.bind(this, index)}
-                  aria-expanded="false"
-                  aria-controls={`sect-${index + 1}`}
-                  id={`accordeon-${index + 1}`}
-                >
-                  <span part="acc-title" class="accordion-title">
-                    {tabHeader.title}
-                  </span>
-                </button>
-              </h3>
-              <div
-                id={`sect-${index + 1}`}
-                role="region"
-                aria-labelledby={`accordeon-${index + 1}`}
-                class="js-panel"
-              >
+            <div part="acc-panel" class="ip-acc-panel">
+              {tabHeader.title ? (
+                <h3 part="acc-header" class="js-acc-button">
+                  <button
+                    part="acc-btn"
+                    onClick={this.onSelectPanel.bind(this, index)}
+                    aria-expanded="false"
+                    aria-controls={`sect-${index + 1}`}
+                    id={`accordeon-${index + 1}`}
+                  >
+                    <span part="acc-title" class="accordion-title">
+                      {tabHeader.title}
+                    </span>
+                  </button>
+                </h3>
+              ) : (
+                <div part="acc-header" class="js-acc-button">
+                  <button
+                    part="acc-btn"
+                    onClick={this.onSelectPanel.bind(this, index)}
+                    aria-expanded="false"
+                    aria-controls={`sect-${index + 1}`}
+                    id={`accordeon-${index + 1}`}
+                  >
+                    <img part="acc-icon" class="accordion-icon" src={tabHeader.iconPath} alt="" />
+                  </button>
+                </div>
+              )}
+
+              <div id={`sect-${index + 1}`} role="region" aria-labelledby={`accordeon-${index + 1}`} class="js-panel">
                 <slot name={'accordeon-' + (index + 1)}></slot>
               </div>
             </div>
           ))
         ) : (
-          <div class="ip-acc-panel">
-            <h3 class="js-acc-button">
+          <div part="acc-panel" class="ip-acc-panel">
+            <h3 part="acc-header" class="js-acc-button">
               <button
+                part="acc-btn"
                 onClick={this.onSelectPanel.bind(this, 0)}
                 aria-expanded="false"
                 aria-controls="sect-1"
                 id="accordeon-1"
               >
-                <span class="accordion-title">Non consectetur a erat nam at lectus urna duis?</span>
+                <span part="acc-title" class="accordion-title">
+                  Non&nbsp;consectetur a erat nam at lectus urna duis&nbsp;?
+                </span>
               </button>
             </h3>
             <div id="sect-1" role="region" aria-labelledby="accordeon-1" class="js-panel">
               <div class="acc-content">
-                <img
-                  class="acc-content__image"
-                  src={getAssetPath('assets/images/tab-img-1.png')}
-                  alt=""
-                />
+                <img class="acc-content__image" src={getAssetPath('assets/images/tab-img-1.png')} alt="" />
 
                 <div class="acc-content__desc-wrapper">
-                  <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+                  <h4 class="acc-content__title">Lorem&nbsp;ipsum dolor sit amet, a ac&nbsp;leo.</h4>
                   <p class="acc-content__desc">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis
-                    condimentum nunc, eu gravida risus. Sed a consequat velit. Sed non elit tortor.
-                    Nulla vestibulum, libero sed fringilla tempus, augue erat dictum quam, vehicula
-                    consectetur leo massa ac leo. Nunc nibh magna, porta et volutpat eget, consequat
-                    at risus.
+                    Lorem&nbsp;ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum nunc, eu
+                    gravida risus. Sed a consequat velit. Sed non elit tortor. Nulla vestibulum, libero sed fringilla
+                    tempus, augue erat dictum quam, vehicula consectetur leo massa ac leo. Nunc nibh magna, porta et
+                    volutpat eget, consequat at&nbsp;risus.
                   </p>
                   <a class="acc-content__btn" href="#">
-                    En savoir plus
+                    En&nbsp;savoir&nbsp;plus
                   </a>
                 </div>
               </div>

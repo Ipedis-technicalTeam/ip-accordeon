@@ -2,6 +2,7 @@
   --ip-acc-primary-color: #b00057;
   --ip-acc-secondary-color: #2e3243;
   --ip-acc-font: 'Avenir', sans-serif;
+  --ip-acc-icon: 30px;
 }
 
 .ip-accordeon {
@@ -31,9 +32,10 @@
 .js-acc-button button {
   all: unset;
   font: inherit;
+  display: flex;
+  align-items: center;
   border-radius: inherit;
   position: relative;
-  display: block;
   font-size: 1.125rem;
   color: var(--ip-acc-primary-color);
   background-color: #ffffff;
@@ -43,7 +45,7 @@
   padding-inline: 1.333em;
   padding-block: 1em;
   box-sizing: border-box;
-  transition: all 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   cursor: pointer;
 
   &::before {
@@ -58,7 +60,13 @@
     transform: translateX(-1em);
     transform-origin: center;
     pointer-events: none;
-    transition: transform 0.5s linear;
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .accordion-icon {
+    block-size: var(--ip-acc-icon);
+    inline-size: var(--ip-acc-icon);
+    aspect-ratio: 1/1;
   }
 
   .accordion-title {
@@ -77,6 +85,11 @@
   &[aria-expanded='true'] {
     background-color: var(--ip-acc-primary-color);
     color: #ffffff;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+
+    &::before {
+      transform: translateX(-1em) rotateX(180deg);
+    }
 
     .accordion-title {
       color: currentColor;
@@ -104,16 +117,22 @@
   padding: 45px;
 
   > * {
-    flex-basis: 50%;
     align-self: center;
   }
 
+  $maxWidth: 50%;
+
   &__image {
+    flex-basis: $maxWidth;
     border-radius: 10px;
     inline-size: auto;
     block-size: 100%;
-    max-inline-size: 50%;
+    max-inline-size: $maxWidth;
     max-block-size: 100%;
+  }
+
+  &__desc-wrapper {
+    flex-basis: auto;
   }
 
   &__title {

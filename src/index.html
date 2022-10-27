@@ -29,7 +29,35 @@
       display: block;
       max-width: 895px;
       margin-inline: auto;
+      margin-block: 100px;
     }
+
+    /* ip-accordeon::part(acc-panel) {
+      overflow: visible;
+      margin-block-end: 50px;
+    }
+
+    ip-accordeon::part(acc-header) {
+      position: relative;
+      block-size: 60px;
+    }
+
+    ip-accordeon::part(acc-btn) {
+      padding: 0;
+      inline-size: fit-content;
+      aspect-ratio: 1/1;
+      background-color: red;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      position: absolute;
+      inset-inline-start: 0;
+      inset-block-end: -50%;
+    }
+
+    ip-accordeon::part(acc-btn)::before {
+      display: none;
+    } */
 
     .acc-content {
       display: flex;
@@ -38,16 +66,20 @@
     }
 
     .acc-content > * {
-      flex-basis: 50%;
       align-self: center;
     }
 
     .acc-content__image {
+      flex-basis: 40%;
       border-radius: 10px;
       inline-size: auto;
       block-size: 100%;
-      max-inline-size: 50%;
+      max-inline-size: 40%;
       max-block-size: 100%;
+    }
+
+    .acc-content__desc-wrapper {
+      flex-basis: auto;
     }
 
     .acc-content__title {
@@ -91,24 +123,11 @@
       is-first-panel-open="true"
       is-single-open="true"
       accordeon-headers='[
-        {"title":"Non consectetur a erat nam at lectus urna duis?"},
-        {"title":"Onec urna tellus, facilisis id sagittis eu, rutrum sit amet elit ?"},
-        {"title":"Uisque vestibulum ultrices metus quis lacinia. Vivamus hendrerit tortor ?"}
+        {"title": "Non consectetur a erat nam at lectus urna duis&nbsp;?"},
+        {"iconPath": "assets/images/acc-2.svg", "iconActivePath": "assets/images/acc-2-active.svg"},
+        {"title":"Uisque vestibulum ultrices metus quis lacinia. Vivamus hendrerit tortor&nbsp;?"}
       ]'
     >
-      <!-- <div slot="accordeon-1">
-        <img width="513" height="513" src="assets/images/tab-img-1.png" alt="" />
-        <div class="desc">
-          <h4>Lorem ipsum dolor sit amet, a ac leo.</h4>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum
-            nunc, eu gravida risus. Sed a consequat velit. Sed non elit tortor. Nulla vestibulum,
-            libero sed fringilla tempus, augue erat dictum quam, vehicula consectetur leo massa ac
-            leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
-          </p>
-        </div>
-      </div> -->
-
       <div class="acc-content" slot="accordeon-1">
         <img class="acc-content__image" src="assets/images/tab-img-1.png" alt="" />
 

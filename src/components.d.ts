@@ -9,6 +9,8 @@ import { AccordeonHeadersInterface } from "./components/ip-accordeon/interface/a
 export namespace Components {
     interface IpAccordeon {
         "accordeonHeaders": AccordeonHeadersInterface[] | string;
+        "isFirstPanelOpen": boolean;
+        "isSingleOpen": boolean;
     }
 }
 declare global {
@@ -25,6 +27,8 @@ declare global {
 declare namespace LocalJSX {
     interface IpAccordeon {
         "accordeonHeaders"?: AccordeonHeadersInterface[] | string;
+        "isFirstPanelOpen"?: boolean;
+        "isSingleOpen"?: boolean;
     }
     interface IntrinsicElements {
         "ip-accordeon": IpAccordeon;
