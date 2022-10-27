@@ -1,3 +1,5 @@
 export interface AccordeonHeadersInterface {
-  title: string;
+  title?: string;
+  iconPath?: string;
+  iconActivePath?: string;
 }
