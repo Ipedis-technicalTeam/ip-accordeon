@@ -48,6 +48,12 @@
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   cursor: pointer;
 
+  &:has(.accordion-icon + .accordion-title) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   &::before {
     content: '';
     position: absolute;
@@ -72,12 +78,14 @@
   .accordion-title {
     position: relative;
     font-size: inherit;
+    font-weight: 700;
     color: var(--ip-acc-secondary-color);
 
     &::before {
       content: '0' counter(list) '.';
       position: relative;
       color: var(--ip-acc-primary-color);
+      font: inherit;
       margin-inline-end: 0.625em;
     }
   }
