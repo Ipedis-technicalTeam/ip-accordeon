@@ -25,6 +25,8 @@ export class IpAccordeon {
   @State() accHeaderButtons;
   @State() accPanels;
 
+  @State() currentPanel;
+
   @Prop() isFirstPanelOpen: boolean;
   @Prop() isSingleOpen: boolean;
 
@@ -46,14 +48,21 @@ export class IpAccordeon {
   openFirstPanel() {
     if (this.isFirstPanelOpen) {
       const firstPanel = this.accPanels[0];
+      const firstButton = this.accHeaderButtons[0];
 
       (this.accHeaderButtons[0] as HTMLElement).setAttribute('aria-expanded', 'true');
+      this.currentPanel = 'panel-1'
 
       firstPanel.style.transition = 'none';
       firstPanel.style.height = firstPanel.scrollHeight + 'px';
 
       setTimeout(() => {
         firstPanel.style.transition = 'all 0.3s ease-in';
+      }, 500);
+
+      firstButton.style.transition = 'none';
+      setTimeout(() => {
+        firstButton.style.transition = 'all 0.3s ease-in-out';
       }, 500);
     }
   }
@@ -67,9 +76,15 @@ export class IpAccordeon {
     });
   }
 
-  onSelectPanel(index: number) {
+  onSelectPanel(index: number, panel: string) {
     const selectedButton = this.accHeaderButtons[index];
     const selectedPanel = this.accPanels[index];
+
+    if (selectedButton.getAttributeNode('aria-expanded').value === 'false') {
+      this.currentPanel = panel;
+    } else {
+      this.currentPanel = '';
+    }
 
     this.setAriaExpanded(selectedButton);
 
@@ -121,7 +136,7 @@ export class IpAccordeon {
                 <h3 part="acc-header" class="js-acc-button">
                   <button
                     part="acc-btn"
-                    onClick={this.onSelectPanel.bind(this, index)}
+                    onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
                     aria-expanded="false"
                     aria-controls={`sect-${index + 1}`}
                     id={`accordeon-${index + 1}`}
@@ -135,12 +150,12 @@ export class IpAccordeon {
                 <div part="acc-header" class="js-acc-button">
                   <button
                     part="acc-btn"
-                    onClick={this.onSelectPanel.bind(this, index)}
+                    onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
                     aria-expanded="false"
                     aria-controls={`sect-${index + 1}`}
                     id={`accordeon-${index + 1}`}
                   >
-                    <img part="acc-icon" class="accordion-icon" src={tabHeader.iconPath} alt="" />
+                    <img part="acc-icon" class="accordion-icon" src={this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath} alt="" />
                   </button>
                 </div>
               )}
