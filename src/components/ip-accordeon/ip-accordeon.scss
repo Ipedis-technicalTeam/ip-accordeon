@@ -176,5 +176,11 @@
     border-radius: 4px;
     box-sizing: border-box;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+    &:hover {
+      background-color: var(--ip-acc-primary-color);
+      color: #ffffff;
+    }
   }
 }
