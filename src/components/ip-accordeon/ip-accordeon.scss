@@ -48,6 +48,12 @@
   transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
   cursor: pointer;
 
+  &:has(.accordion-icon + .accordion-title) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
   &::before {
     content: '';
     position: absolute;

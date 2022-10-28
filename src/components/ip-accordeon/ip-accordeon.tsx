@@ -51,7 +51,7 @@ export class IpAccordeon {
       const firstButton = this.accHeaderButtons[0];
 
       (this.accHeaderButtons[0] as HTMLElement).setAttribute('aria-expanded', 'true');
-      this.currentPanel = 'panel-1'
+      this.currentPanel = 'panel-1';
 
       firstPanel.style.transition = 'none';
       firstPanel.style.height = firstPanel.scrollHeight + 'px';
@@ -133,19 +133,43 @@ export class IpAccordeon {
           this._accordeonHeaders.map((tabHeader, index) => (
             <div part="acc-panel" class="ip-acc-panel">
               {tabHeader.title ? (
-                <h3 part="acc-header" class="js-acc-button">
-                  <button
-                    part="acc-btn"
-                    onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
-                    aria-expanded="false"
-                    aria-controls={`sect-${index + 1}`}
-                    id={`accordeon-${index + 1}`}
-                  >
-                    <span part="acc-title" class="accordion-title">
-                      {tabHeader.title}
-                    </span>
-                  </button>
-                </h3>
+                tabHeader.iconPath ? (
+                  <h3 part="acc-header" class="js-acc-button">
+                    <button
+                      part="acc-btn"
+                      onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
+                      aria-expanded="false"
+                      aria-controls={`sect-${index + 1}`}
+                      id={`accordeon-${index + 1}`}
+                    >
+                      <img
+                        part="acc-icon"
+                        class="accordion-icon"
+                        src={
+                          this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath
+                        }
+                        alt=""
+                      />
+                      <span part="acc-title" class="accordion-title">
+                        {tabHeader.title}
+                      </span>
+                    </button>
+                  </h3>
+                ) : (
+                  <h3 part="acc-header" class="js-acc-button">
+                    <button
+                      part="acc-btn"
+                      onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
+                      aria-expanded="false"
+                      aria-controls={`sect-${index + 1}`}
+                      id={`accordeon-${index + 1}`}
+                    >
+                      <span part="acc-title" class="accordion-title">
+                        {tabHeader.title}
+                      </span>
+                    </button>
+                  </h3>
+                )
               ) : (
                 <div part="acc-header" class="js-acc-button">
                   <button
@@ -155,7 +179,12 @@ export class IpAccordeon {
                     aria-controls={`sect-${index + 1}`}
                     id={`accordeon-${index + 1}`}
                   >
-                    <img part="acc-icon" class="accordion-icon" src={this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath} alt="" />
+                    <img
+                      part="acc-icon"
+                      class="accordion-icon"
+                      src={this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath}
+                      alt=""
+                    />
                   </button>
                 </div>
               )}
