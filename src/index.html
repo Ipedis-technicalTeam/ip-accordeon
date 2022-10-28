@@ -13,48 +13,28 @@
   </head>
 
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
       background-color: #4d4d4d;
     }
 
-    h3,
+    h4,
     p:last-child {
-      margin: 0;
+      margin-block: 0;
+      margin-inline: 0;
     }
 
     ip-accordeon {
       display: block;
-      max-width: 895px;
+      width: min(calc(100% - 40px), 895px);
       margin-inline: auto;
-      margin-block: 100px;
+      margin-block: 10vh;
     }
-
-    /* ip-accordeon::part(acc-panel) {
-      overflow: visible;
-      margin-block-end: 50px;
-    }
-
-    ip-accordeon::part(acc-header) {
-      position: relative;
-      block-size: 60px;
-    }
-
-    ip-accordeon::part(acc-btn) {
-      padding: 0;
-      inline-size: fit-content;
-      aspect-ratio: 1/1;
-      background-color: red;
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      position: absolute;
-      inset-inline-start: 0;
-      inset-block-end: -50%;
-    }
-
-    ip-accordeon::part(acc-btn)::before {
-      display: none;
-    } */
 
     .acc-content {
       display: flex;
@@ -95,7 +75,7 @@
       font-size: 18px;
       font-weight: 300;
       color: #2e3243;
-      margin-block-end: 2em;
+      margin-block-end: 1.5em;
     }
 
     .acc-content__desc:last-child {
@@ -112,6 +92,23 @@
       border-radius: 4px;
       box-sizing: border-box;
       cursor: pointer;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .acc-content__btn:hover {
+      background-color: var(--ip-acc-primary-color);
+      color: #ffffff;
+    }
+
+    @media only screen and (max-width: 767px) and (orientation: portrait),
+      only screen and (max-width: 992px) and (orientation: landscape) {
+      .acc-content {
+        flex-direction: column;
+      }
+
+      .acc-content__image {
+        max-inline-size: 100%;
+      }
     }
   </style>
 
@@ -120,24 +117,25 @@
       is-first-panel-open="true"
       is-single-open="true"
       accordeon-headers='[
-        {"title": "Non consectetur a erat nam at lectus urna duis&nbsp;?"},
-        {"title": "Onec urna tellus, facilisis id sagittis eu, rutrum sit amet elit&nbsp;?"},
-        {"title": "Uisque vestibulum ultrices metus quis lacinia. Vivamus hendrerit tortor&nbsp;?"},
-        {"title": "Estibulum velit nibh, maximus in tempor in, vestibulum sed libero"},
-        {"title": "Morbi in pharetra eros, ut fermentum lacus. Maecenas sodales faucibus magna&nbsp;?"}
+        {"title": "Accessibilité"},
+        {"title": "Pdf&nbsp;Document"},
+        {"title": "Statistical"},
+        {"title": "Certification"},
+        {"title": "Legislation"}
       ]'
     >
       <div class="acc-content" slot="accordeon-1">
         <img class="acc-content__image" src="assets/images/tab-img-1.png" alt="" />
 
         <div class="acc-content__desc-wrapper">
-          <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <h4 class="acc-content__title">6 Bonnes Pratiques pour être en Conformité</h4>
           <p class="acc-content__desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum nunc, eu gravida risus.
-            Sed a consequat velit. Sed non elit tortor. Nulla vestibulum, libero sed fringilla tempus, augue erat dictum
-            quam, vehicula consectetur leo massa ac leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+            Aujourd’hui, encore beaucoup de sites Web et d’applications mobiles sont conçus sans penser à la navigation
+            des personnes en situation de handicap. Pourtant, pour ces personnes, l’outil digital représente un
+            véritable levier d’intégration, et leur apporte bien souvent un surcroît d’indépendance.Selon les différents
+            types de handicaps, les manquements les plus couramment relevés sur le Web ne sont pas les mêmes.
           </p>
-          <a class="acc-content__btn" aria-label="En savoir plus, (update me to real title)" href="#">
+          <a class="acc-content__btn" aria-label="En savoir plus, 6 Bonnes Pratiques pour être en Conformité" href="#">
             En savoir plus
           </a>
         </div>
@@ -147,11 +145,13 @@
         <img class="acc-content__image" src="assets/images/tab-img-2.png" alt="" />
 
         <div class="acc-content__desc-wrapper">
-          <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <h4 class="acc-content__title">Comment ont été conçus les PDF ?</h4>
           <p class="acc-content__desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum nunc, eu gravida risus.
-            Sed a consequat velit. Sed non elit tortor. Nulla vestibulum, libero sed fringilla tempus, augue erat dictum
-            quam, vehicula consectetur leo massa ac leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+            À l’origine, les documents PDF n’étaient pas conçus pour être lus via un ordinateur mais pour être imprimés.
+            Aujourd’hui, les documents PDF sont de plus en plus utilisés par les entreprises pour échanger et diffuser
+            de l’information numérique de façon plus professionnelle (présentation, sécurité pour la protection de
+            données). Sans traitement, les documents PDF sont inaccessibles pour des personnes non-voyantes utilisant
+            des outils tels qu’un lecteur d’écran.
           </p>
           <a class="acc-content__btn" aria-label="En savoir plus, (update me to real title)" href="#">
             En savoir plus
@@ -163,11 +163,13 @@
         <img class="acc-content__image" src="assets/images/tab-img-3.png" alt="" />
 
         <div class="acc-content__desc-wrapper">
-          <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <h4 class="acc-content__title">Gérer efficacement la création</h4>
           <p class="acc-content__desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum nunc, eu gravida risus.
-            Sed a consequat velit. Sed non elit tortor. Nulla vestibulum, libero sed fringilla tempus, augue erat dictum
-            quam, vehicula consectetur leo massa ac leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+            PubliSpeak a été pensé pour vous faciliter la gestion de vos publications. Toutes les informations relatives
+            à votre publication sont consultables en un clin d'œil. Titre, clients, nombre de pages, langues, dates et
+            statuts. Les statuts font intégralement partie du cycle de vie d’une publication et de votre gestion de
+            projet. Rendre visible son travail pour le faire valider par ses collaborateurs ou ses clients n’est pas de
+            tout repos.
           </p>
           <a class="acc-content__btn" aria-label="En savoir plus, (update me to real title)" href="#">
             En savoir plus
@@ -179,11 +181,13 @@
         <img class="acc-content__image" src="assets/images/tab-img-4.jpeg" alt="" />
 
         <div class="acc-content__desc-wrapper">
-          <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <h4 class="acc-content__title">Nos équipes vous accompagnent</h4>
           <p class="acc-content__desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum nunc, eu gravida risus.
-            Sed a consequat velit. Sed non elit tortor. Nulla vestibulum, libero sed fringilla tempus, augue erat dictum
-            quam, vehicula consectetur leo massa ac leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+            Notre plateforme de publications digitales répond à vos besoins mais vous n’êtes pas à l'aise avec
+            l’accessibilité numérique .Pas de panique, onboarding, formation et support, nos équipes vous accompagnent
+            vers l’autonomie et la prise en main de l’accessibilité numérique.Associez vos publications entre elles et
+            construisez un corpus de documents afin de permettre à votre lecteur de naviguer facilement entre vos
+            différentes publications.
           </p>
           <a class="acc-content__btn" aria-label="En savoir plus, (update me to real title)" href="#">
             En savoir plus
@@ -195,11 +199,13 @@
         <img class="acc-content__image" src="assets/images/tab-img-5.jpg" alt="" />
 
         <div class="acc-content__desc-wrapper">
-          <h4 class="acc-content__title">Lorem ipsum dolor sit amet, a ac leo.</h4>
+          <h4 class="acc-content__title">Valider votre travail auprès de vos clients</h4>
           <p class="acc-content__desc">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum nunc, eu gravida risus.
-            Sed a consequat velit. Sed non elit tortor. Nulla vestibulum, libero sed fringilla tempus, augue erat dictum
-            quam, vehicula consectetur leo massa ac leo. Nunc nibh magna, porta et volutpat eget, consequat at risus.
+            PubliSpeak est un SaaS prêt à l’emploi. Il permet de charger votre fichier PDF initial final en un clic et
+            de personnaliser la publication selon vos envies. L’éditeur est un formidable moteur de création pour la vue
+            article. Et plus les lecteurs restent, plus ils sont convaincus ! Si le temps vous manque, des
+            “inspirations” sont prêtes à l’emploi ! Néanmoins, si vous préférez déléguer la partie édition, notre studio
+            dédié s’en chargera.
           </p>
           <a class="acc-content__btn" aria-label="En savoir plus, (update me to real title)" href="#">
             En savoir plus
