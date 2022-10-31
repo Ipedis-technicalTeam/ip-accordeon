@@ -20,6 +20,8 @@
 | -------------- | ----------- |
 | `"acc-btn"`    |             |
 | `"acc-header"` |             |
+| `"acc-icon"`   |             |
+| `"acc-panel"`  |             |
 | `"acc-title"`  |             |
 
 
