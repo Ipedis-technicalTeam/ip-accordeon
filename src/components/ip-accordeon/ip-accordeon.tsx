@@ -205,7 +205,7 @@ export class IpAccordeon {
                 id="accordeon-1"
               >
                 <span part="acc-title" class="accordion-title">
-                  Non&nbsp;consectetur a erat nam at lectus urna duis&nbsp;?
+                  Accessibilité
                 </span>
               </button>
             </h3>
@@ -214,14 +214,19 @@ export class IpAccordeon {
                 <img class="acc-content__image" src={getAssetPath('assets/images/tab-img-1.png')} alt="" />
 
                 <div class="acc-content__desc-wrapper">
-                  <h4 class="acc-content__title">Lorem&nbsp;ipsum dolor sit amet, a ac&nbsp;leo.</h4>
+                  <h4 class="acc-content__title">6 Bonnes Pratiques pour être en Conformité</h4>
                   <p class="acc-content__desc">
-                    Lorem&nbsp;ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis condimentum nunc, eu
-                    gravida risus. Sed a consequat velit. Sed non elit tortor. Nulla vestibulum, libero sed fringilla
-                    tempus, augue erat dictum quam, vehicula consectetur leo massa ac leo. Nunc nibh magna, porta et
-                    volutpat eget, consequat at&nbsp;risus.
+                    Aujourd&apos;hui, encore beaucoup de sites Web et d&apos;applications mobiles sont conçus sans
+                    penser à la navigation des personnes en situation de handicap. Pourtant, pour ces personnes,
+                    l&apos;outil digital représente un véritable levier d&apos;intégration, et leur apporte bien souvent
+                    un surcroît d&apos;indépendance. Selon les différents types de handicaps, les manquements les plus
+                    couramment relevés sur le Web ne sont pas les mêmes.
                   </p>
-                  <a class="acc-content__btn" href="#">
+                  <a
+                    class="acc-content__btn"
+                    aria-label="En savoir plus, 6 Bonnes Pratiques pour être en Conformité"
+                    href="#"
+                  >
                     En&nbsp;savoir&nbsp;plus
                   </a>
                 </div>
