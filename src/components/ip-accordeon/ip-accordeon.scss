@@ -63,7 +63,7 @@
     border: 0.5em solid transparent;
     border-top-color: currentColor;
     border-bottom: 0;
-    transform: translateX(-1em);
+    transform: translateX(-1.333em);
     transform-origin: center;
     pointer-events: none;
     transition: transform 0.3s ease-in-out;
@@ -96,7 +96,7 @@
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
     &::before {
-      transform: translateX(-1em) rotateX(180deg);
+      transform: translateX(-1.333em) rotateX(180deg);
     }
 
     .accordion-title {
