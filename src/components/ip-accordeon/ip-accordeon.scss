@@ -60,13 +60,14 @@
     inset-block: 50%;
     inset-inline-end: 0;
     margin: auto;
-    border: 0.5em solid transparent;
-    border-top-color: currentColor;
-    border-bottom: 0;
+    inline-size: 1em;
+    block-size: 0.5em;
+    background-color: currentColor;
+    clip-path: polygon(50% 100%, 100% 0%, 85% 0%, 50% 75%, 15% 0%, 0% 0%);
     transform: translateX(-1.333em);
     transform-origin: center;
     pointer-events: none;
-    transition: transform 0.3s ease-in-out;
+    transition: clip-path 0.3s ease-in-out;
   }
 
   .accordion-icon {
@@ -96,7 +97,7 @@
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 
     &::before {
-      transform: translateX(-1.333em) rotateX(180deg);
+      clip-path: polygon(50% 0%, 100% 100%, 85% 100%, 50% 25%, 15% 100%, 0% 100%);
     }
 
     .accordion-title {
