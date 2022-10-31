@@ -31,7 +31,7 @@
 
     ip-accordeon {
       display: block;
-      width: min(calc(100% - 40px), 895px);
+      width: min(calc(100% - 20px), 895px);
       margin-inline: auto;
       margin-block: 10vh;
     }
@@ -40,10 +40,6 @@
       display: flex;
       gap: 45px;
       padding: 45px;
-    }
-
-    .acc-content > * {
-      align-self: center;
     }
 
     .acc-content__image {
@@ -84,6 +80,7 @@
 
     .acc-content__btn {
       all: unset;
+      display: inline-block;
       color: var(--ip-acc-primary-color);
       padding-inline: 25px;
       padding-block: 10px;
@@ -104,6 +101,8 @@
       only screen and (max-width: 992px) and (orientation: landscape) {
       .acc-content {
         flex-direction: column;
+        gap: 30px;
+        padding: 20px;
       }
 
       .acc-content__image {
@@ -132,8 +131,8 @@
           <p class="acc-content__desc">
             Aujourd’hui, encore beaucoup de sites Web et d’applications mobiles sont conçus sans penser à la navigation
             des personnes en situation de handicap. Pourtant, pour ces personnes, l’outil digital représente un
-            véritable levier d’intégration, et leur apporte bien souvent un surcroît d’indépendance.Selon les différents
-            types de handicaps, les manquements les plus couramment relevés sur le Web ne sont pas les mêmes.
+            véritable levier d’intégration, et leur apporte bien souvent un surcroît d’indépendance. Selon les
+            différents types de handicaps, les manquements les plus couramment relevés sur le Web ne sont pas les mêmes.
           </p>
           <a class="acc-content__btn" aria-label="En savoir plus, 6 Bonnes Pratiques pour être en Conformité" href="#">
             En savoir plus
