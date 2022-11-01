@@ -30,6 +30,8 @@ export class IpAccordeon {
   @Prop() isFirstPanelOpen: boolean;
   @Prop() isSingleOpen: boolean;
 
+  @Prop() titleTag: string = 'h2';
+
   componentWillLoad() {
     this.arrayDataWatcher(this.accordeonHeaders);
 
@@ -134,7 +136,7 @@ export class IpAccordeon {
             <div part="acc-panel" class="ip-acc-panel">
               {tabHeader.title ? (
                 tabHeader.iconPath ? (
-                  <h3 part="acc-header" class="js-acc-button">
+                  <this.titleTag part="acc-header" class="js-acc-button">
                     <button
                       part="acc-btn"
                       onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
@@ -154,9 +156,9 @@ export class IpAccordeon {
                         {tabHeader.title}
                       </span>
                     </button>
-                  </h3>
+                  </this.titleTag>
                 ) : (
-                  <h3 part="acc-header" class="js-acc-button">
+                  <this.titleTag part="acc-header" class="js-acc-button">
                     <button
                       part="acc-btn"
                       onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
@@ -168,7 +170,7 @@ export class IpAccordeon {
                         {tabHeader.title}
                       </span>
                     </button>
-                  </h3>
+                  </this.titleTag>
                 )
               ) : (
                 <div part="acc-header" class="js-acc-button">
@@ -196,7 +198,7 @@ export class IpAccordeon {
           ))
         ) : (
           <div part="acc-panel" class="ip-acc-panel">
-            <h3 part="acc-header" class="js-acc-button">
+            <h2 part="acc-header" class="js-acc-button">
               <button
                 part="acc-btn"
                 onClick={this.onSelectPanel.bind(this, 0)}
@@ -208,7 +210,7 @@ export class IpAccordeon {
                   Accessibilité
                 </span>
               </button>
-            </h3>
+            </h2>
             <div id="sect-1" role="region" aria-labelledby="accordeon-1" class="js-panel">
               <div class="acc-content">
                 <img class="acc-content__image" src={getAssetPath('assets/images/tab-img-1.png')} alt="" />

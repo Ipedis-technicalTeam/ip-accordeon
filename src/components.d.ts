@@ -11,6 +11,7 @@ export namespace Components {
         "accordeonHeaders": AccordeonHeadersInterface[] | string;
         "isFirstPanelOpen": boolean;
         "isSingleOpen": boolean;
+        "titleTag": string;
     }
 }
 declare global {
@@ -29,6 +30,7 @@ declare namespace LocalJSX {
         "accordeonHeaders"?: AccordeonHeadersInterface[] | string;
         "isFirstPanelOpen"?: boolean;
         "isSingleOpen"?: boolean;
+        "titleTag"?: string;
     }
     interface IntrinsicElements {
         "ip-accordeon": IpAccordeon;

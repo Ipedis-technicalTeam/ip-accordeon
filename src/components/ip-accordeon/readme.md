@@ -12,6 +12,7 @@
 | `accordeonHeaders` | `accordeon-headers`   |             | `AccordeonHeadersInterface[] \| string` | `undefined` |
 | `isFirstPanelOpen` | `is-first-panel-open` |             | `boolean`                               | `undefined` |
 | `isSingleOpen`     | `is-single-open`      |             | `boolean`                               | `undefined` |
+| `titleTag`         | `title-tag`           |             | `string`                                | `'h2'`      |
 
 
 ## Shadow Parts
