@@ -130,7 +130,7 @@ export class IpAccordeon {
 
   render() {
     return [
-      <div class="ip-accordeon" id="ip-accordeon">
+      <div part="ip-accordeon" class="ip-accordeon" id="ip-accordeon">
         {this._accordeonHeaders ? (
           this._accordeonHeaders.map((tabHeader, index) => (
             <div part="acc-panel" class="ip-acc-panel">
@@ -152,9 +152,24 @@ export class IpAccordeon {
                         }
                         alt=""
                       />
-                      <span part="acc-title" class="accordion-title">
+                      <span
+                        part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-title acc-title-active' : 'acc-title'}
+                        class="accordion-title"
+                      >
                         {tabHeader.title}
                       </span>
+                      {tabHeader.subTitle ? (
+                        <span
+                          part={
+                            this.currentPanel === 'panel-' + (index + 1)
+                              ? 'acc-subtitle acc-subtitle-active'
+                              : 'acc-subtitle'
+                          }
+                          class="accordion-subtitle"
+                        >
+                          {tabHeader.subTitle}
+                        </span>
+                      ) : null}
                     </button>
                   </this.titleTag>
                 ) : (
@@ -172,6 +187,19 @@ export class IpAccordeon {
                       >
                         {tabHeader.title}
                       </span>
+
+                      {tabHeader.subTitle ? (
+                        <span
+                          part={
+                            this.currentPanel === 'panel-' + (index + 1)
+                              ? 'acc-subtitle acc-subtitle-active'
+                              : 'acc-subtitle'
+                          }
+                          class="accordion-subtitle"
+                        >
+                          {tabHeader.subTitle}
+                        </span>
+                      ) : null}
                     </button>
                   </this.titleTag>
                 )
