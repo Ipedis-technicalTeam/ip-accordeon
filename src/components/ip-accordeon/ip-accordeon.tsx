@@ -130,7 +130,7 @@ export class IpAccordeon {
 
   render() {
     return [
-      <div class="ip-accordeon" id="ip-accordeon">
+      <div part="ip-accordeon" class="ip-accordeon" id="ip-accordeon">
         {this._accordeonHeaders ? (
           this._accordeonHeaders.map((tabHeader, index) => (
             <div part="acc-panel" class="ip-acc-panel">
@@ -138,51 +138,82 @@ export class IpAccordeon {
                 tabHeader.iconPath ? (
                   <this.titleTag part="acc-header" class="js-acc-button">
                     <button
-                      part="acc-btn"
+                      part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-btn acc-btn-active' : 'acc-btn'}
                       onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
                       aria-expanded="false"
                       aria-controls={`sect-${index + 1}`}
                       id={`accordeon-${index + 1}`}
                     >
                       <img
-                        part="acc-icon"
+                        part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-icon acc-icon-active' : 'acc-icon'}
                         class="accordion-icon"
                         src={
                           this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath
                         }
                         alt=""
                       />
-                      <span part="acc-title" class="accordion-title">
+                      <span
+                        part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-title acc-title-active' : 'acc-title'}
+                        class="accordion-title"
+                      >
                         {tabHeader.title}
                       </span>
+                      {tabHeader.subTitle ? (
+                        <span
+                          part={
+                            this.currentPanel === 'panel-' + (index + 1)
+                              ? 'acc-subtitle acc-subtitle-active'
+                              : 'acc-subtitle'
+                          }
+                          class="accordion-subtitle"
+                        >
+                          {tabHeader.subTitle}
+                        </span>
+                      ) : null}
                     </button>
                   </this.titleTag>
                 ) : (
                   <this.titleTag part="acc-header" class="js-acc-button">
                     <button
-                      part="acc-btn"
+                      part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-btn acc-btn-active' : 'acc-btn'}
                       onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
                       aria-expanded="false"
                       aria-controls={`sect-${index + 1}`}
                       id={`accordeon-${index + 1}`}
                     >
-                      <span part="acc-title" class="accordion-title">
+                      <span
+                        part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-title acc-title-active' : 'acc-title'}
+                        class="accordion-title"
+                      >
                         {tabHeader.title}
                       </span>
+
+                      {tabHeader.subTitle ? (
+                        <span
+                          part={
+                            this.currentPanel === 'panel-' + (index + 1)
+                              ? 'acc-subtitle acc-subtitle-active'
+                              : 'acc-subtitle'
+                          }
+                          class="accordion-subtitle"
+                        >
+                          {tabHeader.subTitle}
+                        </span>
+                      ) : null}
                     </button>
                   </this.titleTag>
                 )
               ) : (
                 <div part="acc-header" class="js-acc-button">
                   <button
-                    part="acc-btn"
+                    part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-btn acc-btn-active' : 'acc-btn'}
                     onClick={this.onSelectPanel.bind(this, index, 'panel-' + (index + 1))}
                     aria-expanded="false"
                     aria-controls={`sect-${index + 1}`}
                     id={`accordeon-${index + 1}`}
                   >
                     <img
-                      part="acc-icon"
+                      part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-icon acc-icon-active' : 'acc-icon'}
                       class="accordion-icon"
                       src={this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath}
                       alt=""
@@ -200,13 +231,16 @@ export class IpAccordeon {
           <div part="acc-panel" class="ip-acc-panel">
             <h2 part="acc-header" class="js-acc-button">
               <button
-                part="acc-btn"
+                part={this.currentPanel === 'panel-' + 1 ? 'acc-btn acc-btn-active' : 'acc-btn'}
                 onClick={this.onSelectPanel.bind(this, 0)}
                 aria-expanded="false"
                 aria-controls="sect-1"
                 id="accordeon-1"
               >
-                <span part="acc-title" class="accordion-title">
+                <span
+                  part={this.currentPanel === 'panel-' + 1 ? 'acc-title acc-title-active' : 'acc-title'}
+                  class="accordion-title"
+                >
                   Accessibilité
                 </span>
               </button>
