@@ -133,7 +133,7 @@ export class IpAccordeon {
       <div part="ip-accordeon" class="ip-accordeon" id="ip-accordeon">
         {this._accordeonHeaders ? (
           this._accordeonHeaders.map((tabHeader, index) => (
-            <div part="acc-panel" class="ip-acc-panel">
+            <div part={`acc-panel acc-panel-${index + 1}`} class="ip-acc-panel">
               {tabHeader.title ? (
                 tabHeader.iconPath ? (
                   <this.titleTag part="acc-header" class="js-acc-button">
@@ -158,7 +158,7 @@ export class IpAccordeon {
                       >
                         {tabHeader.title}
                       </span>
-                      {tabHeader.subTitle ? (
+                      {tabHeader.subtitle ? (
                         <span
                           part={
                             this.currentPanel === 'panel-' + (index + 1)
@@ -167,7 +167,7 @@ export class IpAccordeon {
                           }
                           class="accordion-subtitle"
                         >
-                          {tabHeader.subTitle}
+                          {tabHeader.subtitle}
                         </span>
                       ) : null}
                     </button>
@@ -188,7 +188,7 @@ export class IpAccordeon {
                         {tabHeader.title}
                       </span>
 
-                      {tabHeader.subTitle ? (
+                      {tabHeader.subtitle ? (
                         <span
                           part={
                             this.currentPanel === 'panel-' + (index + 1)
@@ -197,7 +197,7 @@ export class IpAccordeon {
                           }
                           class="accordion-subtitle"
                         >
-                          {tabHeader.subTitle}
+                          {tabHeader.subtitle}
                         </span>
                       ) : null}
                     </button>
@@ -228,7 +228,7 @@ export class IpAccordeon {
             </div>
           ))
         ) : (
-          <div part="acc-panel" class="ip-acc-panel">
+          <div part="acc-panel acc-panel-1" class="ip-acc-panel">
             <h2 part="acc-header" class="js-acc-button">
               <button
                 part={this.currentPanel === 'panel-' + 1 ? 'acc-btn acc-btn-active' : 'acc-btn'}
