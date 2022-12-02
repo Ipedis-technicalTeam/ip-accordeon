@@ -17,11 +17,11 @@
 
 ## Shadow Parts
 
-| Part           | Description |
-| -------------- | ----------- |
-| `"acc-header"` |             |
-| `"acc-panel"`  |             |
-| `"acc-title"`  |             |
+| Part             | Description |
+| ---------------- | ----------- |
+| `"acc-header"`   |             |
+| `"acc-panel"`    |             |
+| `"ip-accordeon"` |             |
 
 
 ----------------------------------------------
