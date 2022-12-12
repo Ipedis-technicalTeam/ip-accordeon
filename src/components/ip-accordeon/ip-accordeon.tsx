@@ -222,7 +222,13 @@ export class IpAccordeon {
                 </div>
               )}
 
-              <div id={`sect-${index + 1}`} role="region" aria-labelledby={`accordeon-${index + 1}`} class="js-panel">
+              <div
+                part="acc-content"
+                id={`sect-${index + 1}`}
+                role="region"
+                aria-labelledby={`accordeon-${index + 1}`}
+                class="js-panel"
+              >
                 <slot name={'accordeon-' + (index + 1)}></slot>
               </div>
             </div>
@@ -245,7 +251,7 @@ export class IpAccordeon {
                 </span>
               </button>
             </h2>
-            <div id="sect-1" role="region" aria-labelledby="accordeon-1" class="js-panel">
+            <div part="acc-content" id="sect-1" role="region" aria-labelledby="accordeon-1" class="js-panel">
               <div class="acc-content">
                 <img class="acc-content__image" src={getAssetPath('assets/images/tab-img-1.png')} alt="" />
 

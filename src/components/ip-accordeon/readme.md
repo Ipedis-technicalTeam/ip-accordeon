@@ -19,8 +19,10 @@
 
 | Part             | Description |
 | ---------------- | ----------- |
+| `"acc-content"`  |             |
 | `"acc-header"`   |             |
 | `"acc-panel"`    |             |
+| `"acc-panel-1"`  |             |
 | `"ip-accordeon"` |             |
 
 
