@@ -56,7 +56,9 @@ export class IpAccordeon2 {
       this.currentPanel = 'panel-1';
 
       firstPanel.style.transition = 'none';
-      firstPanel.style.blockSize = firstPanel.scrollHeight + 'px';
+      // firstPanel.style.blockSize = firstPanel.scrollHeight + 'px';
+
+      firstPanel.setAttribute('style', `--width: ${firstButton.offsetWidth}px; left: ${firstButton.offsetWidth}px;`);
 
       setTimeout(() => {
         firstPanel.style.transition = 'all 0.3s ease-in';
@@ -93,12 +95,14 @@ export class IpAccordeon2 {
     this.isOpen(selectedButton);
 
     this.setHeight(selectedPanel);
+
+    this.setLeft(selectedPanel, selectedButton);
   }
 
   isOpen(selectedButton: HTMLElement) {
     if (this.isSingleOpen) {
       this.accPanels.forEach(panel => {
-        panel.style.blockSize = '0px';
+        // panel.style.blockSize = '0px';
       });
 
       this.accHeaderButtons.forEach(accButton => {
@@ -114,10 +118,18 @@ export class IpAccordeon2 {
   setHeight(selectedPanel: HTMLElement) {
     if (selectedPanel.offsetHeight === 0) {
       // selectedPanel.style.blockSize = 'auto';
-      selectedPanel.style.blockSize = selectedPanel.scrollHeight + 'px';
+      // selectedPanel.style.blockSize = selectedPanel.scrollHeight + 'px';
     } else {
-      selectedPanel.style.blockSize = '0px';
+      // selectedPanel.style.blockSize = '0px';
     }
+  }
+
+  setLeft(selectedPanel: HTMLElement, selectedButton: HTMLElement) {
+    // selectedPanel.style.left = selectedButton.offsetWidth + 'px';
+    selectedPanel.setAttribute(
+      'style',
+      `--width: ${selectedButton.offsetWidth}px; left: ${selectedButton.offsetWidth}px;`,
+    );
   }
 
   // set aria-expanded to true for selected button
