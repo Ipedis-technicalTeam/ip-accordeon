@@ -17,8 +17,9 @@
 }
 
 .ip-acc-panel {
-  flex: 1;
-  order: 1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
   // position: relative;
   border-radius: 4px;
   // box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
@@ -26,7 +27,10 @@
   transition: all 0.35s ease-in-out;
 
   &-active {
-    order: 0;
+    position: absolute;
+    //order: 0;
+
+    left: 0!important;
   }
 
   // &-active ~ &:not(.ip-acc-panel-active) {
@@ -59,7 +63,7 @@
   padding-inline: 1.333em;
   padding-block: 1em;
   box-sizing: border-box;
-  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out, all .3s ease-in-out;
   cursor: pointer;
 
   &:has(.accordion-icon + .accordion-title) {
@@ -87,7 +91,9 @@
   &[aria-expanded='true'] {
     background-color: var(--ip-acc-primary-color);
     color: #ffffff;
-    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    //transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+    left: 0!important;
+    z-index: 2;
 
     &::before {
       clip-path: polygon(50% 0%, 100% 100%, 85% 100%, 50% 25%, 15% 100%, 0% 100%);
@@ -106,7 +112,7 @@
 .js-panel {
   position: absolute;
   top: 0;
-  width: calc(100% - var(--width, 0px));
+  width: 0px;
   height: 100%;
   z-index: -1;
   opacity: 0;
@@ -117,7 +123,7 @@
   background-color: white;
 
   &-active {
-    // width: calc(100% - var(--width, 0px));
+     width:  var(--width);
     // height: 100%;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     opacity: 1;
