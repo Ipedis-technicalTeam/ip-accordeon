@@ -6,9 +6,16 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { AccordeonHeadersInterface } from "./components/ip-accordeon/interface/accordeon-headers.interface";
+import { AccordeonHeadersInterface as AccordeonHeadersInterface1 } from "./components/ip-accordeon-2/interface/accordeon-headers.interface";
 export namespace Components {
     interface IpAccordeon {
         "accordeonHeaders": AccordeonHeadersInterface[] | string;
+        "isFirstPanelOpen": boolean;
+        "isSingleOpen": boolean;
+        "titleTag": string;
+    }
+    interface IpAccordeon2 {
+        "accordeonHeaders": AccordeonHeadersInterface1[] | string;
         "isFirstPanelOpen": boolean;
         "isSingleOpen": boolean;
         "titleTag": string;
@@ -21,8 +28,15 @@ declare global {
         prototype: HTMLIpAccordeonElement;
         new (): HTMLIpAccordeonElement;
     };
+    interface HTMLIpAccordeon2Element extends Components.IpAccordeon2, HTMLStencilElement {
+    }
+    var HTMLIpAccordeon2Element: {
+        prototype: HTMLIpAccordeon2Element;
+        new (): HTMLIpAccordeon2Element;
+    };
     interface HTMLElementTagNameMap {
         "ip-accordeon": HTMLIpAccordeonElement;
+        "ip-accordeon-2": HTMLIpAccordeon2Element;
     }
 }
 declare namespace LocalJSX {
@@ -32,8 +46,15 @@ declare namespace LocalJSX {
         "isSingleOpen"?: boolean;
         "titleTag"?: string;
     }
+    interface IpAccordeon2 {
+        "accordeonHeaders"?: AccordeonHeadersInterface1[] | string;
+        "isFirstPanelOpen"?: boolean;
+        "isSingleOpen"?: boolean;
+        "titleTag"?: string;
+    }
     interface IntrinsicElements {
         "ip-accordeon": IpAccordeon;
+        "ip-accordeon-2": IpAccordeon2;
     }
 }
 export { LocalJSX as JSX };
@@ -41,6 +62,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "ip-accordeon": LocalJSX.IpAccordeon & JSXBase.HTMLAttributes<HTMLIpAccordeonElement>;
+            "ip-accordeon-2": LocalJSX.IpAccordeon2 & JSXBase.HTMLAttributes<HTMLIpAccordeon2Element>;
         }
     }
 }
