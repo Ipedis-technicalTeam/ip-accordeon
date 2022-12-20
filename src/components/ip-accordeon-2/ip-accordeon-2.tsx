@@ -23,6 +23,7 @@ export class IpAccordeon2 {
   }
 
   @State() accHeaderButtons;
+  @State() accPanelContainer;
   @State() accPanels;
 
   @State() currentPanel;
@@ -38,11 +39,16 @@ export class IpAccordeon2 {
     setTimeout(() => {
       this.accHeaderButtons = this.el.shadowRoot.querySelector('#ip-accordeon').querySelectorAll('button');
 
+      this.accPanelContainer = this.el.shadowRoot.querySelector('#ip-accordeon').querySelectorAll('.ip-acc-panel');
+
       this.accPanels = this.el.shadowRoot.querySelector('#ip-accordeon').querySelectorAll('.js-panel');
 
       this.setSlotId();
 
       this.openFirstPanel();
+
+      this.computeButtonWidth();
+
     }, 0);
   }
 
@@ -96,12 +102,12 @@ export class IpAccordeon2 {
 
     this.setHeight(selectedPanel);
 
-    this.setLeft(selectedPanel, selectedButton);
+    // this.setLeft(selectedPanel, selectedButton);
   }
 
   isOpen(selectedButton: HTMLElement) {
     if (this.isSingleOpen) {
-      this.accPanels.forEach(panel => {
+      this.accPanels.forEach(_panel => {
         // panel.style.blockSize = '0px';
       });
 
@@ -124,13 +130,13 @@ export class IpAccordeon2 {
     }
   }
 
-  setLeft(selectedPanel: HTMLElement, selectedButton: HTMLElement) {
-    // selectedPanel.style.left = selectedButton.offsetWidth + 'px';
-    selectedPanel.setAttribute(
-      'style',
-      `--width: ${selectedButton.offsetWidth}px; left: ${selectedButton.offsetWidth}px;`,
-    );
-  }
+  // setLeft(selectedPanel: HTMLElement, selectedButton: HTMLElement) {
+  //   // selectedPanel.style.left = selectedButton.offsetWidth + 'px';
+  //   // selectedPanel.setAttribute(
+  //   //   'style',
+  //   //   `--width: ${selectedButton.offsetWidth}px; left: ${selectedButton.offsetWidth}px;`,
+  //   // );
+  // }
 
   // set aria-expanded to true for selected button
   setAriaExpanded(selectedButton: HTMLElement) {
@@ -139,6 +145,24 @@ export class IpAccordeon2 {
     } else {
       selectedButton.setAttribute('aria-expanded', 'true');
     }
+  }
+
+  computeButtonWidth() {
+    const panelWidth = this.el.shadowRoot.querySelector('.ip-accordeon').clientWidth;
+    const numButtons = this.accPanelContainer.length;
+
+    const buttonWidth = panelWidth/numButtons;
+
+    this.accPanelContainer.forEach((accPanels, index) => {
+      accPanels.style.width = buttonWidth + 'px';
+      accPanels.style.left = buttonWidth * index + 'px';
+    });
+
+    this.accPanels.forEach((panel) => {
+      // panel.style.width = (panelWidth - buttonWidth) + 'px';
+      panel.setAttribute('style', `--width: ${panelWidth - buttonWidth}px; left: ${buttonWidth}px`)
+    });
+
   }
 
   render() {
