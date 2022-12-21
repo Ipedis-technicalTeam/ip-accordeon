@@ -48,6 +48,8 @@ export class IpAccordeon2 {
       this.openFirstPanel();
 
       this.computeButtonWidth();
+
+      this.setTabIndex();
     }, 0);
   }
 
@@ -86,12 +88,22 @@ export class IpAccordeon2 {
 
   onSelectPanel(index: number, panel: string) {
     const selectedButton = this.accHeaderButtons[index];
-    // const selectedPanel = this.accPanels[index];
 
-    if (selectedButton.getAttributeNode('aria-expanded').value === 'false') {
+    const activePanel = this.el.querySelectorAll('[slot]')[index];
+    const focusableElements = activePanel.querySelectorAll('a , button');
+
+   if (selectedButton.getAttributeNode('aria-expanded').value === 'false') {
+     focusableElements.forEach((focusableElement) => {
+       focusableElement.removeAttribute('tabindex')
+     })
+
       this.currentPanel = panel;
     } else {
       this.currentPanel = '';
+     focusableElements.forEach((focusableElement) => {
+       focusableElement.setAttribute('tabindex', '-1')
+     })
+
     }
 
     this.setAriaExpanded(selectedButton);
@@ -141,10 +153,21 @@ export class IpAccordeon2 {
 
     this.accPanels.forEach(panel => {
       panel.setAttribute('style', `--width: ${panelWidth + panelGap - buttonWidth}px; left: ${buttonWidth}px`);
-      panel.querySelectorAll('a, button').forEach(el => {
-        el.setAttribute('tabindex', '-1');
-      });
     });
+  }
+
+  setTabIndex() {
+    const slottedElems = this.el.querySelectorAll('[slot]');
+
+    slottedElems.forEach((slotElem) => {
+      const focusableElements = slotElem.querySelectorAll('a, button');
+
+      focusableElements.forEach((focusableElement) => {
+        focusableElement.setAttribute('tabindex', '-1');
+      })
+
+    });
+
   }
 
   render() {
