@@ -99,6 +99,10 @@
     transform: rotate(180deg);
   }
 
+  .accordion-subtitle {
+    display: block;
+  }
+
   &[aria-expanded='true'] {
     background-color: var(--ip-acc-primary-color);
     color: #ffffff;

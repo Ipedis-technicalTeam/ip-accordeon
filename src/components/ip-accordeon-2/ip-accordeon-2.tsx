@@ -238,19 +238,20 @@ export class IpAccordeon2 {
                           class="accordion-title"
                         >
                           {tabHeader.title}
+
+                          {tabHeader.subtitle ? (
+                            <span
+                              part={
+                                this.currentPanel === 'panel-' + (index + 1)
+                                  ? 'acc-subtitle acc-subtitle-active'
+                                  : 'acc-subtitle'
+                              }
+                              class="accordion-subtitle"
+                            >
+                              {tabHeader.subtitle}
+                            </span>
+                          ) : null}
                         </span>
-                        {tabHeader.subtitle ? (
-                          <span
-                            part={
-                              this.currentPanel === 'panel-' + (index + 1)
-                                ? 'acc-subtitle acc-subtitle-active'
-                                : 'acc-subtitle'
-                            }
-                            class="accordion-subtitle"
-                          >
-                            {tabHeader.subtitle}
-                          </span>
-                        ) : null}
                       </div>
                     </button>
                   </this.titleTag>
@@ -285,19 +286,20 @@ export class IpAccordeon2 {
                           class="accordion-title"
                         >
                           {tabHeader.title}
+
+                          {tabHeader.subtitle ? (
+                            <span
+                              part={
+                                this.currentPanel === 'panel-' + (index + 1)
+                                  ? 'acc-subtitle acc-subtitle-active'
+                                  : 'acc-subtitle'
+                              }
+                              class="accordion-subtitle"
+                            >
+                              {tabHeader.subtitle}
+                            </span>
+                          ) : null}
                         </span>
-                        {tabHeader.subtitle ? (
-                          <span
-                            part={
-                              this.currentPanel === 'panel-' + (index + 1)
-                                ? 'acc-subtitle acc-subtitle-active'
-                                : 'acc-subtitle'
-                            }
-                            class="accordion-subtitle"
-                          >
-                            {tabHeader.subtitle}
-                          </span>
-                        ) : null}
                       </div>
                     </button>
                   </this.titleTag>
