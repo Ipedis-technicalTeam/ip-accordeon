@@ -16,6 +16,7 @@ export namespace Components {
     }
     interface IpAccordeon2 {
         "accordeonHeaders": AccordeonHeadersInterface1[] | string;
+        "gap": string;
         "isFirstPanelOpen": boolean;
         "isSingleOpen": boolean;
         "titleTag": string;
@@ -48,6 +49,7 @@ declare namespace LocalJSX {
     }
     interface IpAccordeon2 {
         "accordeonHeaders"?: AccordeonHeadersInterface1[] | string;
+        "gap"?: string;
         "isFirstPanelOpen"?: boolean;
         "isSingleOpen"?: boolean;
         "titleTag"?: string;

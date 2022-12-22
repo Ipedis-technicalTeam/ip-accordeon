@@ -33,6 +33,8 @@ export class IpAccordeon2 {
 
   @Prop() titleTag: string = 'h2';
 
+  @Prop() gap: string = '20';
+
   componentWillLoad() {
     this.arrayDataWatcher(this.accordeonHeaders);
 
@@ -148,10 +150,10 @@ export class IpAccordeon2 {
   }
 
   computeButtonWidth() {
-    let gap = 20;
+    let buttonGap = parseInt(this.gap);
 
     const numButtons = this.accPanelContainer.length;
-    const panelGap = gap * (numButtons - 1);
+    const panelGap = buttonGap * (numButtons - 1);
 
     const panelWidth = this.el.shadowRoot.querySelector('.ip-accordeon').clientWidth - panelGap;
 
@@ -159,7 +161,7 @@ export class IpAccordeon2 {
 
     this.accPanelContainer.forEach((accPanels, index) => {
       accPanels.style.width = buttonWidth + 'px';
-      accPanels.style.left = buttonWidth * index + gap * index + 'px';
+      accPanels.style.left = buttonWidth * index + buttonGap * index + 'px';
     });
 
     this.accPanels.forEach(panel => {
@@ -202,32 +204,54 @@ export class IpAccordeon2 {
                       aria-controls={`sect-${index + 1}`}
                       id={`accordeon-${index + 1}`}
                     >
-                      <img
-                        part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-icon acc-icon-active' : 'acc-icon'}
-                        class="accordion-icon"
-                        src={
-                          this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath
-                        }
-                        alt=""
-                      />
                       <span
-                        part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-title acc-title-active' : 'acc-title'}
-                        class="accordion-title"
+                        part={
+                          this.currentPanel === 'panel-' + (index + 1)
+                            ? `acc-btn-image acc-${index + 1}-btn-image acc-btn-image-active`
+                            : `acc-btn-image acc-${index + 1}-btn-image`
+                        }
+                      ></span>
+
+                      <div
+                        part={
+                          this.currentPanel === 'panel-' + (index + 1)
+                            ? 'acc-btn-wrapper acc-btn-wrapper-active'
+                            : 'acc-btn-wrapper'
+                        }
                       >
-                        {tabHeader.title}
-                      </span>
-                      {tabHeader.subtitle ? (
+                        <img
+                          part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-icon acc-icon-active' : 'acc-icon'}
+                          class="accordion-icon"
+                          src={
+                            this.currentPanel === 'panel-' + (index + 1)
+                              ? tabHeader.iconActivePath
+                                ? tabHeader.iconActivePath
+                                : tabHeader.iconPath
+                              : tabHeader.iconPath
+                          }
+                          alt=""
+                        />
                         <span
                           part={
-                            this.currentPanel === 'panel-' + (index + 1)
-                              ? 'acc-subtitle acc-subtitle-active'
-                              : 'acc-subtitle'
+                            this.currentPanel === 'panel-' + (index + 1) ? 'acc-title acc-title-active' : 'acc-title'
                           }
-                          class="accordion-subtitle"
+                          class="accordion-title"
                         >
-                          {tabHeader.subtitle}
+                          {tabHeader.title}
                         </span>
-                      ) : null}
+                        {tabHeader.subtitle ? (
+                          <span
+                            part={
+                              this.currentPanel === 'panel-' + (index + 1)
+                                ? 'acc-subtitle acc-subtitle-active'
+                                : 'acc-subtitle'
+                            }
+                            class="accordion-subtitle"
+                          >
+                            {tabHeader.subtitle}
+                          </span>
+                        ) : null}
+                      </div>
                     </button>
                   </this.titleTag>
                 ) : (
@@ -240,24 +264,41 @@ export class IpAccordeon2 {
                       id={`accordeon-${index + 1}`}
                     >
                       <span
-                        part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-title acc-title-active' : 'acc-title'}
-                        class="accordion-title"
-                      >
-                        {tabHeader.title}
-                      </span>
+                        part={
+                          this.currentPanel === 'panel-' + (index + 1)
+                            ? `acc-btn-image acc-${index + 1}-btn-image acc-btn-image-active`
+                            : `acc-btn-image acc-${index + 1}-btn-image`
+                        }
+                      ></span>
 
-                      {tabHeader.subtitle ? (
+                      <div
+                        part={
+                          this.currentPanel === 'panel-' + (index + 1)
+                            ? 'acc-btn-wrapper acc-btn-wrapper-active'
+                            : 'acc-btn-wrapper'
+                        }
+                      >
                         <span
                           part={
-                            this.currentPanel === 'panel-' + (index + 1)
-                              ? 'acc-subtitle acc-subtitle-active'
-                              : 'acc-subtitle'
+                            this.currentPanel === 'panel-' + (index + 1) ? 'acc-title acc-title-active' : 'acc-title'
                           }
-                          class="accordion-subtitle"
+                          class="accordion-title"
                         >
-                          {tabHeader.subtitle}
+                          {tabHeader.title}
                         </span>
-                      ) : null}
+                        {tabHeader.subtitle ? (
+                          <span
+                            part={
+                              this.currentPanel === 'panel-' + (index + 1)
+                                ? 'acc-subtitle acc-subtitle-active'
+                                : 'acc-subtitle'
+                            }
+                            class="accordion-subtitle"
+                          >
+                            {tabHeader.subtitle}
+                          </span>
+                        ) : null}
+                      </div>
                     </button>
                   </this.titleTag>
                 )
@@ -270,12 +311,30 @@ export class IpAccordeon2 {
                     aria-controls={`sect-${index + 1}`}
                     id={`accordeon-${index + 1}`}
                   >
-                    <img
-                      part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-icon acc-icon-active' : 'acc-icon'}
-                      class="accordion-icon"
-                      src={this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath}
-                      alt=""
-                    />
+                    <span
+                      part={
+                        this.currentPanel === 'panel-' + (index + 1)
+                          ? `acc-btn-image acc-${index + 1}-btn-image acc-btn-image-active`
+                          : `acc-btn-image acc-${index + 1}-btn-image`
+                      }
+                    ></span>
+
+                    <div
+                      part={
+                        this.currentPanel === 'panel-' + (index + 1)
+                          ? 'acc-btn-wrapper acc-btn-wrapper-active'
+                          : 'acc-btn-wrapper'
+                      }
+                    >
+                      <img
+                        part={this.currentPanel === 'panel-' + (index + 1) ? 'acc-icon acc-icon-active' : 'acc-icon'}
+                        class="accordion-icon"
+                        src={
+                          this.currentPanel === 'panel-' + (index + 1) ? tabHeader.iconActivePath : tabHeader.iconPath
+                        }
+                        alt=""
+                      />
+                    </div>
                   </button>
                 </div>
               )}
@@ -302,11 +361,25 @@ export class IpAccordeon2 {
                 id="accordeon-1"
               >
                 <span
-                  part={this.currentPanel === 'panel-' + 1 ? 'acc-title acc-title-active' : 'acc-title'}
-                  class="accordion-title"
+                  part={
+                    this.currentPanel === 'panel-' + 1
+                      ? `acc-btn-image acc-1-btn-image acc-btn-image-active`
+                      : `acc-btn-image acc-1-btn-image`
+                  }
+                ></span>
+
+                <div
+                  part={
+                    this.currentPanel === 'panel-' + 1 ? 'acc-btn-wrapper acc-btn-wrapper-active' : 'acc-btn-wrapper'
+                  }
                 >
-                  Accessibilité
-                </span>
+                  <span
+                    part={this.currentPanel === 'panel-' + 1 ? 'acc-title acc-title-active' : 'acc-title'}
+                    class="accordion-title"
+                  >
+                    Accessibilité
+                  </span>
+                </div>
               </button>
             </h2>
             <div part="acc-content" id="sect-1" role="region" aria-labelledby="accordeon-1" class="js-panel">

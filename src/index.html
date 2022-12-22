@@ -29,6 +29,88 @@
       height: 100%;
     }
 
+    ip-accordeon-2::part(acc-header) {
+      display: flex;
+      flex-direction: column;
+      background-color: white;
+    }
+
+    ip-accordeon-2::part(acc-btn) {
+      background-color: transparent;
+      flex: 1;
+      color: #000;
+      display: flex;
+      flex-direction: column;
+    }
+
+    ip-accordeon-2::part(acc-btn-active) {
+      color: #000;
+    }
+
+    ip-accordeon-2::part(acc-btn-wrapper) {
+      flex: 1;
+      justify-content: flex-end;
+      color: #000;
+
+      transition: all 0.35s ease-in-out;
+    }
+
+    ip-accordeon-2::part(acc-btn-wrapper-active) {
+      justify-content: space-between;
+    }
+
+    ip-accordeon-2::part(acc-icon) {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-inline: auto;
+      transform: translateY(-50%);
+      background-color: rgba(255, 0, 0, 0.7);
+
+      transition: all 0.35s ease-in-out;
+    }
+
+    ip-accordeon-2::part(acc-icon-active) {
+      position: relative;
+      margin-inline: auto;
+      transform: translateY(0);
+      background-color: initial;
+    }
+
+    ip-accordeon-2::part(acc-btn-image) {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+
+      transition: clip-path 0.35s ease-in-out, height 0.35s 0.15s ease-in-out;
+    }
+
+    ip-accordeon-2::part(acc-1-btn-image) {
+      background-image: url('./assets/images/tab-img-1.png');
+    }
+
+    ip-accordeon-2::part(acc-2-btn-image) {
+      background-image: url('./assets/images/tab-img-2.png');
+    }
+
+    ip-accordeon-2::part(acc-3-btn-image) {
+      background-image: url('./assets/images/tab-img-3.png');
+    }
+
+    ip-accordeon-2::part(acc-4-btn-image) {
+      background-image: url('./assets/images/tab-img-4.jpeg');
+    }
+
+    ip-accordeon-2::part(acc-btn-image-active) {
+      height: 0;
+      clip-path: polygon(0 0, 100% 0, 100% 0%, 0 0%);
+
+      transition: clip-path 0.35s ease-in-out, height 0.35s 0.15s ease-in-out;
+    }
+
     .ip-accordeon-2 {
       max-width: 1024px;
       border: 2px solid red;
@@ -49,14 +131,13 @@
 
     <div class="ip-accordeon-2">
       <ip-accordeon-2
-        title-tag="h3"
-        is-first-panel-open="false"
-        is-single-open="true"
+        title-tag="h2"
+        gap="20"
         accordeon-headers='[
-        {"title": "Accessibilité", "iconPath": "assets/images/acc-1.svg",  "iconActivePath": "assets/images/acc-1-active.svg"},
-        {"title": "Pdf&nbsp;Document", "iconPath": "assets/images/acc-1.svg",  "iconActivePath": "assets/images/acc-1-active.svg"},
-        {"title": "Statistical", "iconPath": "assets/images/acc-1.svg",  "iconActivePath": "assets/images/acc-1-active.svg"},
-        {"title": "Certification", "iconPath": "assets/images/acc-1.svg",  "iconActivePath": "assets/images/acc-1-active.svg"}
+        {"title": "Accessibilité", "iconPath": "assets/images/acc-1.svg"},
+        {"title": "Pdf&nbsp;Document", "iconPath": "assets/images/acc-1.svg"},
+        {"title": "Statistical", "iconPath": "assets/images/acc-1.svg"},
+        {"title": "Certification", "iconPath": "assets/images/acc-1.svg"}
       ]'
       >
         <div class="acc-content" slot="accordeon-1">
